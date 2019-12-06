@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="marca_form_view">
+        <field name="name">marca.form</field>
+        <field name="model">marcas.marca</field>
+        <field name="arch" type="xml">
+         <form string="Marca Form">
+           <sheet>
+             <group>
+               <field name="name"/>
+             </group>
+         </sheet>
+         </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="marca_tree_view">
+        <field name="name">marca.tree</field>
+        <field name="model">marcas.marca</field>
+        <field name="arch" type="xml">
+         <tree string="Marca Tree">
+               <field name="name"/>
+           </tree>
+       </field>
+   </record>
+
+
+   <record id="view_marca_form_inherit" model="ir.ui.view">
+       <field name="name">Marcas</field>
+       <field name="model">product.template</field>
+       <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+       <field name="arch" type="xml">
+           <field name="compatible_ids" position="after">
+               <field name="marca_ids" widget="many2many_tags" options="{'color_field': 'color'}" domain="[('id', '!=', active_id)]" />
+           </field>
+       </field>
+   </record>
+
+   <record model="ir.actions.act_window" id="marca_list_action">
+       <field name="name">Marcas</field>
+       <field name="res_model">marcas.marca</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+   </record>
+
+<menuitem id="marca_menu" name="Marcas"
+    parent="stock.menu_stock_inventory_control"
+    action="marca_list_action"
+    sequence="4"/>
+
+</odoo>
