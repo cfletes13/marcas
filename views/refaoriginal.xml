@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="refaoriginal_form_view">
+        <field name="name">refaoriginal.form</field>
+        <field name="model">marcas.refaoriginal</field>
+        <field name="arch" type="xml">
+         <form string="RefaccionOriginal Form">
+           <sheet>
+             <group>
+               <field name="name"/>
+             </group>
+         </sheet>
+         </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="refaoriginal_tree_view">
+        <field name="name">refaoriginal.tree</field>
+        <field name="model">marcas.refaoriginal</field>
+        <field name="arch" type="xml">
+         <tree string="RefaccionOriginal Tree">
+               <field name="name"/>
+           </tree>
+       </field>
+   </record>
+
+   <record id="view_refaoriginal_form_inherit" model="ir.ui.view">
+       <field name="name">Refaccion Original</field>
+       <field name="model">product.template</field>
+       <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+       <field name="arch" type="xml">
+           <field name="compatible_ids" position="after">
+               <field name="refaoriginal_ids" widget="many2many_tags" options="{'color_field': 'color'}" domain="[('id', '!=', active_id)]" />
+           </field>
+       </field>
+   </record>
+
+   <record model="ir.actions.act_window" id="refaoriginal_list_action">
+       <field name="name">Refaccion Original</field>
+       <field name="res_model">marcas.refaoriginal</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+   </record>
+
+<menuitem id="refaoriginal_menu" name="Refaccion Original"
+    parent="stock.menu_stock_inventory_control"
+    action="refaoriginal_list_action"
+    sequence="4"/>
+
+</odoo>

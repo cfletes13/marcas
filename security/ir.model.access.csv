@@ -1,2 +1,3 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 marca_read_all,marca all,model_marcas_marca,,1,1,1,1
+refaoriginal_read_all,refaoriginal all,model_marcas_refaoriginal,,1,1,1,1
